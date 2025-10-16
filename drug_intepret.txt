@@ -1,0 +1,35 @@
+FROM THE VISUALIZATION:
+- If the sodium to potassium level is less than or equal to 14.839,
+there are 160 patients that satisfied.
+
+- gini = 0.68: This is the Gini impurity measure, which tells how mixed
+the classes are in this node.
+    If 0 = pure (all samples belong to one class)
+    If >0 = node is mixed
+
+- Value [17, 13, 11, 43, 76] represents the count of patients per
+drug class at this node. The order corresponds to the encoded classes:
+    Class (Encoded)         Drug Name       Count
+    0                       druga           17
+    1                       drugb           13
+    2                       drugc           11
+    3                       drugx           43
+    4                       drugy           76
+- The model picks the most common drug in the node as the prediction.
+Here, drugy is the majority class with 76/160 patients.
+
+Split into subgroups:
+- True:
+    Patients who have:
+    + Na_to_K <= 14.829
+    + AND BP <= 0.5 (HIGH)
+    -- There are 84 of these patients
+       Majority class is drugx, so that would be recommended
+
+- False:
+    Patient who have:
+    + Na_to_K <= 14.829
+    + AND BP = LOW or NORMAL
+    -- There are 76 patients
+       All received drugy
+       Perfectly pure node as gini = 0 (model is very confident)
